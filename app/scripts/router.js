@@ -1,0 +1,5 @@
+EmberNodeTest.Router.map(function () {
+  
+});
+
+
