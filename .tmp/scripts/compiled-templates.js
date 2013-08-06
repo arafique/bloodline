@@ -34,6 +34,6 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   
 
 
-  data.buffer.push("<div class=\"well\">\n  Welcome to Yeoman and Ember.js!\n</div>\n");
+  data.buffer.push("<div class=\"well\">\n  Welcome to Yeoman and Ember.js Generated Bloodline base!\n</div>\n");
   
 });
