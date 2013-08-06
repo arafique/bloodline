@@ -9,13 +9,22 @@ var express = require('express');
 var app = express();
 
 app.use(express.logger('dev'));
-app.use(gzippo.staticGzip("" + __dirname + "/dist"));
+
 // app.listen(process.env.PORT || 5000);
 
-
-app.post('/', function(req, res){
-	res.sendfile('index.html');
+app.use(function(req, res, next){
+  console.log('%s %s', req.method, req.url);
+  console.log('__dirname : %s', __dirname);
+  next();
 });
+
+app.post('/', function(req, res, next){
+	req.method = "GET";
+	next();
+});
+
+app.use(gzippo.staticGzip("" + __dirname + "/dist"));
+
 
 var port = process.env.PORT || 5000;
 app.listen(port, function() {
