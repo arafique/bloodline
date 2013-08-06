@@ -1,3 +1,4 @@
+# web: coffee web.coffee : to run via proc file
 gzippo = require 'gzippo'
 express = require 'express'
 
