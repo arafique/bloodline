@@ -18,11 +18,24 @@ app.use(function(req, res, next){
   next();
 });
 
+/**
+ * This function masquerade the post request and change the method to 'GET'. This way the request 
+ * will be handled by the following methos as static content. For more details see the following 
+ * link
+ * http://stackoverflow.com/questions/12005442/express-static-cannot-response-to-post-requests
+ * @param  {[type]}   req  [description]
+ * @param  {[type]}   res  [description]
+ * @param  {Function} next [description]
+ * @return {[type]}        [description]
+ */
 app.post('/', function(req, res, next){
 	req.method = "GET";
 	next();
 });
 
+/**
+ * The contents to be servered from 'dist' directory.
+ */
 app.use(gzippo.staticGzip("" + __dirname + "/dist"));
 
 

@@ -1,4 +1,6 @@
-EmberNodeTest.Router.map(function () {
+Bloodline.Router.map(function () {
+
+	this.route('login');
   
 });
 

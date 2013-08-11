@@ -14,7 +14,7 @@ function program1(depth0,data) {
   return buffer;
   }
 
-  data.buffer.push("<div>\n  <div class=\"navbar navbar-fixed-top\">\n    <div class=\"navbar-inner\">\n      <div class=\"container-fluid\">\n        <div class=\"brand\">\n          Your App\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"container-fluid\" id=\"main\">\n    <div class=\"row-fluid\">\n      <div>\n        <div class=\"span3\">\n          <div class=\"well sidebar-nav\">\n            <span class=\"nav-header\">Colors</span>\n            <ul class=\"nav nav-list\">\n            ");
+  data.buffer.push("<div>\n  <div class=\"navbar navbar-fixed-top\">\n    <div class=\"navbar-inner\">\n      <div class=\"container-fluid\">\n        <div class=\"brand\">\n          Blood Line\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"container-fluid\" id=\"main\">\n    <div class=\"row-fluid\">\n      <div>\n        <div class=\"span3\">\n          <div class=\"well sidebar-nav\">\n            <span class=\"nav-header\">Navigation</span>\n            <ul class=\"nav nav-list\">\n            ");
   hashTypes = {};
   hashContexts = {};
   stack1 = helpers.each.call(depth0, "item", "in", "controller", {hash:{},inverse:self.noop,fn:self.program(1, program1, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
@@ -34,6 +34,25 @@ helpers = helpers || Ember.Handlebars.helpers; data = data || {};
   
 
 
-  data.buffer.push("<div class=\"well\">\n  Welcome to Yeoman and Ember.js Generated Bloodline base!\n</div>\n");
+  data.buffer.push("<div class=\"well\">\n  Welcome to Bloodline!\n</div>\n\n");
+  
+});
+
+Ember.TEMPLATES["login"] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
+this.compilerInfo = [3,'>= 1.0.0-rc.4'];
+helpers = helpers || Ember.Handlebars.helpers; data = data || {};
+  var buffer = '', hashTypes, hashContexts, escapeExpression=this.escapeExpression;
+
+
+  data.buffer.push("\n<!--<div class=\"fb-login-button\" ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "login", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("></div>-->\n<button ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers.action.call(depth0, "login", {hash:{},contexts:[depth0],types:["STRING"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push(">Login with Facebook</button>\n");
+  return buffer;
   
 });
