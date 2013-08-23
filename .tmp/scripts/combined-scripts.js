@@ -13,7 +13,7 @@ Bloodline.ApplicationRoute = Ember.Route.extend({
   // admittedly, this should be in IndexRoute and not in the 
   // top level ApplicationRoute; we're in transition... :-)
   model: function () {
-    return ['red', 'yellow', 'blue', 'green'];
+    return ['Dashboard', 'myBloodline', 'Blood Shoute', 'About'];
   }
 });
 
@@ -35,13 +35,31 @@ Bloodline.AuthenticatedRoute = Ember.Route.extend({
   // }
 
   beforeModel: function(transition){
-  	if (!this.controllerFor('login').get('token')) {
-  		this.redirectToLogin(transition)
-  	}
+    console.log('AuthenticatedRoute.beforeModel: Start');
+    var self = this;
+
+    FB.getLoginStatus(function(response){
+      console.log(response.status);
+      if(response.status != 'connected'){
+        self.redirectToLogin(transition);
+      }
+    });
+
+  	// if (!this.controllerFor('login').get('token')) {
+  	// 	this.redirectToLogin(transition)
+  	// }
+
+    console.log('AuthenticatedRoute.beforeModel: End');
   },
 
+  /**
+   * This method redirects to login route. It also saves the current 'transition' object in LoginCotroller.
+   * LoginController use this object to redirect to request URL after successful login.
+   * @param  {Transition} transition 
+   */
   redirectToLogin: function(transition){
-  	alert('You must login first');
+  	console.log(transition);
+    console.log('redirectToLogin:You must login first');
 
   	var loginController = this.controllerFor('login');
   	loginController.set('attemptedTransition', transition);
@@ -89,10 +107,10 @@ Bloodline.LoginRoute = Ember.Route.extend({
  * @type {[type]}
  */
 Bloodline.IndexController = Ember.ArrayController.extend({
-	facebookLogin: function(){
-		console.log('Login action');
-		FB.login();
-	}
+	// facebookLogin: function(){
+	// 	console.log('Login action');
+	// 	FB.login();
+	// }
 });
 
 
@@ -104,29 +122,43 @@ Bloodline.LoginController = Ember.Controller.extend({
 
 	login: function(){
 		console.log('LoginController:login');
-		
+		/**
+		 * This method invokes Facebook login method. If the login is successful 
+		 * it calls the onSuccess method.
+		 */
+		var self = this;
 		FB.login(function(response) {
+			console.log(response);
 			console.log("Login call response: %s",response.authResponse);
+			
 		    if (response.authResponse) {
-		        FB.api('/me', function(response) {
-				  alert(response.name);
-				});
+		  //       FB.api('/me', function(response) {
+				//   alert(response.name);
+				// });
+				self.onSuccess();
 		    } else {
 		        alert('Login Failed');
 		    }
 		});
 	},
 
+	/**
+	 * This method is called after user has logged in successfully. It will call the previously attepmed 
+	 * URL (if any) other wise I will route to index.
+	 * 
+	 */
 	onSuccess: function(){
 		console.log('LoginController.onSuccess');
-
+		var self = this;
 		var attemptedTransition = this.get('attemptedTransition');
+		//console.log(attemptedTransition);
         if (attemptedTransition) {
+        	console.log('Retrying attemptedTransition');
         	attemptedTransition.retry();
           	self.set('attemptedTransition', null);
         } else {
-			// Redirect to 'articles' by default.
-			self.transitionToRoute('articles');
+			// Redirect to 'index' by default.
+			self.transitionToRoute('index');
         }
 	}
 });
@@ -137,7 +169,7 @@ Bloodline.LoginController = Ember.Controller.extend({
 (function() {
 
 Bloodline.Router.map(function () {
-
+	// this.route('index');
 	this.route('login');
   
 });
@@ -171,7 +203,7 @@ FB.init({
 		  // The response object is returned with a status field that lets the app know the current
 		  // login status of the person. In this case, we're handling the situation where they 
 		  // have logged in to the app.
-		  testAPI();
+		  // testAPI();
 		  
 		} else if (response.status === 'not_authorized') {
 		  // In this case, the person is logged into Facebook, but not into the app, so we call

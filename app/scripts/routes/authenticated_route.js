@@ -11,13 +11,31 @@ Bloodline.AuthenticatedRoute = Ember.Route.extend({
   // }
 
   beforeModel: function(transition){
-  	if (!this.controllerFor('login').get('token')) {
-  		this.redirectToLogin(transition)
-  	}
+    console.log('AuthenticatedRoute.beforeModel: Start');
+    var self = this;
+
+    FB.getLoginStatus(function(response){
+      console.log(response.status);
+      if(response.status != 'connected'){
+        self.redirectToLogin(transition);
+      }
+    });
+
+  	// if (!this.controllerFor('login').get('token')) {
+  	// 	this.redirectToLogin(transition)
+  	// }
+
+    console.log('AuthenticatedRoute.beforeModel: End');
   },
 
+  /**
+   * This method redirects to login route. It also saves the current 'transition' object in LoginCotroller.
+   * LoginController use this object to redirect to request URL after successful login.
+   * @param  {Transition} transition 
+   */
   redirectToLogin: function(transition){
-  	alert('You must login first');
+  	console.log(transition);
+    console.log('redirectToLogin:You must login first');
 
   	var loginController = this.controllerFor('login');
   	loginController.set('attemptedTransition', transition);
