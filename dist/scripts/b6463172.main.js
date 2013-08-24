@@ -1,1 +1,0 @@
-!function(){window.EmberNodeTest=Ember.Application.create()}(),function(){EmberNodeTest.ApplicationRoute=Ember.Route.extend({model:function(){return["red","yellow","blue"]}})}(),function(){EmberNodeTest.Router.map(function(){})}();
