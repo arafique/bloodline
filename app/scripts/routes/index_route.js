@@ -6,10 +6,10 @@ Bloodline.IndexRoute = Bloodline.AuthenticatedRoute.extend({
   // beforeModel: function() {},
   // afterModel: function() {},
   
-  model: function() {
-    FB.api('/me', function(response) {
-  		alert(response.name);
-  		return response;
-	});
-  }
+  // model: function() {
+  //   return FB.api('/me', function(response) {
+  // 		alert(response.name);
+  // 		return response;
+	 // });
+  // }
 });

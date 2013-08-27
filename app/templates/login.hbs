@@ -1,3 +1,17 @@
 
 <!--<div class="fb-login-button" {{action login}}></div>-->
 <button {{action 'login'}}>Login with Facebook</button>
+
+{{#if Bloodline.FBUser}}
+  <div>
+    <img {{bindAttr src="Bloodline.FBUser.picture.data.url" alt="Bloodline.FBUser.name"}} />
+    {{Bloodline.FBUser.name}}
+    <br>
+    <a href="/" {{action "logout" target="FB"}}>Logout</a>
+  </div>
+{{else}}
+  {{#view Ember.FacebookView type="login-button" data-size="medium"
+                          data-scope="email, offline_access"}}
+    Connect
+  {{/view}}
+{{/if}}

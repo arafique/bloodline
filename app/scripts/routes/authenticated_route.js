@@ -10,16 +10,32 @@ Bloodline.AuthenticatedRoute = Ember.Route.extend({
   //     return ;
   // }
 
+/*  events: {
+    error: function (reason, transition){
+      console.log('AuthenticatedRoute.events.error : start');
+
+      console.log(reason);
+      console.log(transition);
+
+      console.log('AuthenticatedRoute.events.error : end');
+    }
+  },*/
+
   beforeModel: function(transition){
     console.log('AuthenticatedRoute.beforeModel: Start');
     var self = this;
+    console.log(Bloodline.FBUser);
+    if(!Bloodline.FBUser){
+      console.log('FBUser not found.')
+      self.redirectToLogin(transition);
+    }
 
-    FB.getLoginStatus(function(response){
-      console.log(response.status);
-      if(response.status != 'connected'){
-        self.redirectToLogin(transition);
-      }
-    });
+    // FB.getLoginStatus(function(response){
+    //   console.log(response.status);
+    //   if(response.status != 'connected'){
+    //     self.redirectToLogin(transition);
+    //   }
+    // });
 
   	// if (!this.controllerFor('login').get('token')) {
   	// 	this.redirectToLogin(transition)
@@ -34,12 +50,14 @@ Bloodline.AuthenticatedRoute = Ember.Route.extend({
    * @param  {Transition} transition 
    */
   redirectToLogin: function(transition){
+    console.log('AuthenticatedRoute.redirectToLogin: Start');
   	console.log(transition);
     console.log('redirectToLogin:You must login first');
 
   	var loginController = this.controllerFor('login');
   	loginController.set('attemptedTransition', transition);
-  	this.transitionTo('login');	
+  	this.transitionTo('login');
+    console.log('AuthenticatedRoute.redirectToLogin: End');	
   }
   
 });

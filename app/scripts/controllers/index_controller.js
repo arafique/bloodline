@@ -2,9 +2,10 @@
  * [ApplicationController description]
  * @type {[type]}
  */
-Bloodline.IndexController = Ember.ArrayController.extend({
+/*Bloodline.IndexController = Ember.ObjectController.extend({
 	// facebookLogin: function(){
 	// 	console.log('Login action');
 	// 	FB.login();
 	// }
 });
+*/
