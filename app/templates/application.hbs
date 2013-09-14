@@ -1,30 +1,62 @@
-<div>
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container-fluid">
-        <div class="brand">
-          Blood Line
+
+     <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"> <img src="images/bd2.png"></a>
+          <a class="navbar-brand" href="#">Bloodline</a>
         </div>
+
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <form class="navbar-form navbar-right">
+            
+              <div class="form-group">
+                {{#if Bloodline.FBUser}}
+                <!--/
+                  <div>
+                    <img {{bindAttr src="Bloodline.FBUser.picture.data.url" alt="Bloodline.FBUser.name"}} />
+                    {{Bloodline.FBUser.name}}
+                    <br>
+                    <a href="/" {{action "logout" target="FB"}}>Logout</a>
+                  </div>
+                -->
+                {{else}}
+                  {{#view Ember.FacebookView type="login-button" data-size="large"
+                                          data-scope="email, offline_access"}}
+                    Login
+                  {{/view}}
+                {{/if}}
+              </div>
+          </form>
+        </div><!--/.nav-collapse -->
       </div>
     </div>
-  </div>
-  <div class="container-fluid" id="main">
-    <div class="row-fluid">
-      <div>
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <span class="nav-header">Navigation</span>
-            <ul class="nav nav-list">
-            {{#each item in controller}}
-              <li>{{item}}</li>
-            {{/each}}
-            </ul>
-          </div>
-        </div>
-        <div class="span9">
-          {{outlet}}
+
+    <div class="container">
+
+      <div class="jumbotron">
+        <div class="container">
+          <h1>Hello, World!</h1>
+          <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+          <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
         </div>
       </div>
+      <div class="contianer">
+        {{outlet}}
+      </div>
+      
+      <hr>
+      
+      <footer>
+        <p>&copy; Bloodline 2013</p>
+      </footer>
     </div>
-  </div>
-</div>

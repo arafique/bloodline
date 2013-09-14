@@ -36,9 +36,9 @@ module.exports = function (grunt) {
                 files: ['test/spec/{,*/}*.coffee'],
                 tasks: ['coffee:test']
             },
-            compass: {
-                files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
-                tasks: ['compass:server']
+            recess: {
+                files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
+                tasks: ['recess']
             },
             neuter: {
                 files: ['<%= yeoman.app %>/scripts/{,*/}*.js'],
@@ -147,26 +147,15 @@ module.exports = function (grunt) {
                 }]
             }
         },
-        compass: {
+        recess: {
+          dist: {
             options: {
-                sassDir: '<%= yeoman.app %>/styles',
-                cssDir: '.tmp/styles',
-                generatedImagesDir: '.tmp/images/generated',
-                imagesDir: '<%= yeoman.app %>/images',
-                javascriptsDir: '<%= yeoman.app %>/scripts',
-                fontsDir: '<%= yeoman.app %>/styles/fonts',
-                importPath: 'app/bower_components',
-                httpImagesPath: '/images',
-                httpGeneratedImagesPath: '/images/generated',
-                httpFontsPath: '/styles/fonts',
-                relativeAssets: false
+              compile: true
             },
-            dist: {},
-            server: {
-                options: {
-                    debugInfo: true
-                }
+            files: {
+              '<%= yeoman.app %>/styles/main.css': ['<%= yeoman.app %>/styles/main.less']
             }
+          }
         },
         // not used since Uglify task does concat,
         // but still available if needed
@@ -276,17 +265,17 @@ module.exports = function (grunt) {
             server: [
                 'emberTemplates',
                 'coffee:dist',
-                'compass:server'
+                'recess'
             ],
             test: [
                 'emberTemplates',
                 'coffee',
-                'compass'
+                'recess'
             ],
             dist: [
                 'emberTemplates',
                 'coffee',
-                'compass:dist',
+                'recess',
                 'imagemin',
                 'svgmin',
                 'htmlmin'
