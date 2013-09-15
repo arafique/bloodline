@@ -6826,10 +6826,17 @@ body {
 
 .navbar .navbar-brand {
   float: none;
-  margin-right: auto;
-  margin-left: auto;
+  line-height: 50px;
+  vertical-align: top;
+}
+
+.navbar .navbar-logo {
+  display: inline-block;
+  vertical-align: top;
+  content: url("../images/bd2.png");
 }
 
 .brand-blood-chart {
   height: 320px;
+  content: url("../images/bloodChart.png");
 }
