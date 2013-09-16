@@ -6831,12 +6831,14 @@ body {
 }
 
 .navbar .navbar-logo {
-  display: inline-block;
+  margin-right: 10px;
+  margin-left: 10px;
   vertical-align: top;
-  content: url("../images/bd2.png");
+  background: url("../images/bd2.png");
 }
 
 .brand-blood-chart {
-  height: 320px;
-  content: url("../images/bloodChart.png");
+  width: 450px;
+  height: 380px;
+  background: url("../images/bloodChart.png");
 }
