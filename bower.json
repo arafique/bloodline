@@ -2,14 +2,10 @@
   "name": "bloodline",
   "version": "0.0.1",
   "dependencies": {
-    "jquery": "~1.9.1",
-    "handlebars": "1.0.0-rc.4",
-    "ember": "1.0.0-rc.6",
-    "ember-data-shim": "~0.0.13",
+    "handlebars": ">=1.0.0",
+    "ember": "1.0.0",
+    "ember-data-shim": "~1.0.0",
     "bootstrap": "~3.0.0"
-  },
-  "resolutions": {
-    "ember": "1.0.0-rc.6"
   },
   "devDependencies": {
     "ember-mocha-adapter": "0.1.1"

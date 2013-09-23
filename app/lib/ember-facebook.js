@@ -82,7 +82,7 @@
         _results = [];
         for (attr in this) {
           if (attr.match(/^data-/) != null) {
-            _results.push(this.attributeBindings.pushObjects(attr));
+            _results.push(this.attributeBindings.push(attr));
           }
         }
         return _results;

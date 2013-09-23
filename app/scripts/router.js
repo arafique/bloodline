@@ -1,7 +1,11 @@
 Bloodline.Router.map(function () {
+	this.resource('authenticated', {path: '/'}, function () {
+		this.resource('dashboard');
+	});
 
-	this.route('login');
-  	this.route('about');
+	this.resource('welcome');
+	this.resource('contact');
+	this.resource('about');
 });
 
 

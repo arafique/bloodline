@@ -1,7 +1,19 @@
 Bloodline.ApplicationRoute = Ember.Route.extend({
-  // admittedly, this should be in IndexRoute and not in the 
-  // top level ApplicationRoute; we're in transition... :-)
-  model: function () {
-    return ['Dashboard', 'myBloodline', 'Blood Shoute', 'About'];
+
+  /**
+   * This method is called after user has logged in successfully. It will call the previously attepmed 
+   * URL (if any) other wise I will route to index.
+   * 
+   */
+  onSuccess: (function(){
+    var self = this;
+    this.transitionTo('dashboard');
+  }).observes('Bloodline.FBUser'),
+
+  actions: {
+    logout: function() {
+      this.controllerFor('application').logoutUser();
+      this.transitionTo('welcome');
+    }
   }
 });
